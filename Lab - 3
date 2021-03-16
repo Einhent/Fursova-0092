@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+
+	ifstream in;
+	in.open("C:\\Users\\Einhent\\source\\repos\\Lab-3\\Lab-3\\Lab-3.cpp");
+
+	if (!in.is_open())
+	{
+
+		cout << "Error" << endl;
+		exit(1);
+	}
+	
+	while (!in.eof())
+	{
+
+		string data;
+		getline(in, data, '\n');
+		cout << data << endl;
+
+	}
+	
+	
+	in.close();
+
+}
