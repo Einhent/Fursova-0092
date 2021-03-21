@@ -1,0 +1,127 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstdio>
+
+
+using namespace std;
+
+int main()
+{
+
+	ofstream file("Text1.txt");
+	ofstream file2("Text2.txt");
+	ofstream file3("Output.txt");
+
+	ifstream file_1;
+	file_1.open("Text1.txt");
+	if (!file_1.is_open())
+	{
+
+		cout << "Error, file: Text1.txt is not open" << endl;
+		exit(1);
+
+	}
+
+	string data_input1;
+	while (true)
+	{
+		
+		cout << "Input something: ";
+		cin >> data_input1;
+		if (data_input1 == "exit")
+			break;
+		file << data_input1 << endl;
+		
+	}
+	file.close();
+	string data_file1;
+	while (!file_1.eof())
+
+	{
+
+		getline(file_1, data_file1, '\n');
+
+	}
+
+
+	ifstream file_2;
+	file_2.open("Text2.txt");
+	if (!file_2.is_open())
+	{
+
+		cout << "Error, file: Text2.txt is not open" << endl;
+		exit(1);
+
+	}
+
+	string data_input2;
+	while (true)
+	{
+		
+		cout << "Input something: ";
+		cin >> data_input2;
+		if (data_input2 == "exit")
+			break;
+		file2 << data_input2 << endl;
+	}
+
+	string data_file2;
+	while (!file_2.eof())
+
+	{
+
+		getline(file_2, data_file2, '\n');
+
+
+	}
+
+	ifstream ai;
+	ai.open("Output.txt");
+	if (!ai.is_open())
+	{
+
+		cout << "Error, file: Output.txt is not open" << endl;
+		exit(1);
+
+	}
+	string data_file3;
+	while (!ai.eof())
+
+	{
+
+		getline(ai, data_file3, '\n');
+
+	}
+
+	file_1.close();
+	file_2.close();
+	file_1.open("Text1.txt");
+	file_2.open("Text2.txt");
+
+	
+	while (!file_1.eof() || !file_2.eof())
+	{
+		if (!file_1.eof())
+		{
+			string str_1;
+			getline(file_1, data_file1, '\n');
+			file3 << data_file1 << endl;
+		}
+		else { file_1.close(); }
+		if (!file_2.eof()) 
+		{
+			string str_2;
+			getline(file_2, data_file2, '\n');
+			file3 << data_file2 << endl;
+		}
+		else { file_2.close(); }
+		
+			
+	}
+}
+
+
+
+
+
