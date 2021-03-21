@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <cstring>
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Rus");
+    ifstream in;
+    in.open("C:\\Users\\Einhent\\source\\repos\\Lab-4\\Lab-4\\Text.txt");
+    
+   
+    int count = 0;
+    while (!in.eof())
+
+    {
+        string str;
+        getline(in, str, '\n');
+        
+        if (str[0] == str[str.size() - 1])
+
+        {
+
+            count++;
+
+        }
+             
+        
+    }
+    in.close();
+    ofstream fout;
+    fout.open("C:\\Users\\Einhent\\source\\repos\\Lab-4\\Lab-4\\Text.txt", ios::app);
+
+    fout << "Количество строк начинающихся и заканчивающиеся одинаковыми символами: " << count << endl;
+
+    fout.close();
+
+
+}
