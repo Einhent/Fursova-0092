@@ -1,0 +1,38 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "Rus");
+
+	double len = 0;			
+	char* ch;			
+	ifstream in("Image.jpg",  ios_base::binary);
+	ofstream out("copy.jpg",	ios_base::binary);
+
+	if (!in)
+	{
+		cout << "Файл не найден" << endl;
+		return(1);
+	}
+	if (!out)
+	{
+		cout << "Не удалось скопировать файл" << endl;
+		return(1);
+	}
+
+	in.seekg(0, ios_base::end);
+	len = in.tellg();
+	in.seekg(0, ios_base::beg);
+
+	ch = new char[len];
+
+	in.read(ch, len);
+	out.write(ch, len);
+
+	delete[] ch;
+	
+	return (0);
+}
