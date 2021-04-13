@@ -1,0 +1,34 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "Rus");
+
+	char ch;		
+  ifstream in("Image.jpg",  ios_base::binary);
+	ofstream out("copy.jpg",	ios_base::binary);
+
+	if (!in)
+	{
+		cout << "Файл не найден" << endl;
+		return(1);
+	}
+	if (!out)
+	{
+		cout << "Не удалось скопировать файл" << endl;
+		return(1);
+	}
+
+	while (in)
+	{
+		in.get(ch);
+		if (in)
+			out.put(ch);
+	}
+	return (0);
+
+
+}
