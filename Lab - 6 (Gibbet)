@@ -1,0 +1,210 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <random>
+
+
+using namespace std;
+
+
+    int main()
+    {
+
+        int errors = 0;
+
+
+
+        setlocale(LC_ALL, "Rus");
+        cout << "Добро пожаловать в игру Виселица :)"<< endl << "         ***************\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "*********************************\n"
+            "*                               *\n" << endl;
+
+        vector<string>words;
+        ifstream in("Word.txt");
+        ofstream out("Key.txt");
+        if (!in)
+        {
+
+            cout << "Внимание! Не хватает компонента игры, игра невозможно!!!" << endl;
+
+        }
+        string word;
+        while (!in.eof())
+        {
+
+            in >> word;
+            words.push_back(word);
+
+        }
+        default_random_engine gen{ random_device()() };
+        uniform_int_distribution<> dist(0, words.size() - 1);
+       
+        word = words[dist(gen)];
+        string key{};
+        for (size_t i = 0; i < word.length(); i++)
+        {
+
+            key += '*';
+
+        }
+        cout << key;
+        int kol = word.length();
+        
+
+
+
+       while (errors < 6)
+        {
+           int j = 0;
+            char ch;
+            cin >> ch;
+            for (int i = 0; i < kol; i++)
+            {
+                
+                
+                if (ch == word[i])
+                {
+                    key[i] = ch;
+                    j++;
+                   
+                   
+                }
+              
+            }
+            cout << key << endl;
+            if (word == key)
+            {          
+                
+                cout << "VICTORY";
+                return(0);
+            }
+            
+            if (j == 0)
+                errors++;
+            if (errors == 1)
+            {
+                cout << "        * **************\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "*********************************\n"
+                    "*                               *\n" << endl;
+                cout << "У вас осталось 5 ошибочных вводов символа" << endl;
+
+
+            }
+            if (errors == 2)
+            { 
+                cout << "        * **************\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             O             *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "*********************************\n"
+                    "*                               *\n" << endl;
+                cout << "У вас осталось 4 ошибочного вводоа символа" << endl;
+            }
+            if (errors == 3)
+            { 
+                cout << "         ***************\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             O             *\n"
+                    "           /   \           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "*********************************\n"
+                    "*                               *\n" << endl;
+                cout << "У вас осталось 3 ошибочного вводоа символа" << endl;
+            }
+            if (errors == 4)
+            { 
+                cout << "         ***************\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             O             *\n"
+                    "           / | \           *\n"
+                    "             |             *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "*********************************\n"
+                    "*                               *\n" << endl;
+                cout << "У вас осталось 2 ошибочных вводa символа" << endl;
+            }
+            if (errors == 5)
+            {
+                cout << "         ***************\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             O             *\n"
+                    "           / | \           *\n"
+                    "             |             *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "*********************************\n"
+                    "*                               *\n" << endl;
+                cout << "У вас осталось 1 ошибочный ввод символа" << endl;
+            }
+            if (errors == 6)
+            {
+                cout << "         ***************\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             |             *\n"
+                    "             O             *\n"
+                    "           / | \           *\n"
+                    "             |             *\n"
+                    "            / \            *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "                           *\n"
+                    "*********************************\n"
+                    "*                               *\n" << endl;
+                cout << "Увы и Ах, вы проиграли :(. Было загадано слово:" << word << endl;
+            }
+        }
+           
+        return (0);
+    }
+ 
