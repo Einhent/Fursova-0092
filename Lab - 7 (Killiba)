@@ -1,0 +1,44 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+	ifstream text_1;
+	text_1.open("C:\\Users\\Einhent\\source\\repos\\Lab-7\\Lab-7\\1.txt");
+	if (!text_1.is_open())
+	{
+		cout << "Error" << endl;
+		exit(1);
+	}
+
+	ifstream text_2;
+	text_2.open("C:\\Users\\Einhent\\source\\repos\\Lab-7\\Lab-7\\2.txt");
+	if (!text_2.is_open())
+	{
+		cout << "Error" << endl;
+		exit(1);
+	}
+
+	string str1;
+	string str2;
+	while (!text_1.eof() || text_2.eof())
+	{
+
+		getline(text_1, str1, '\n');
+		getline(text_2, str2, '\n');
+
+		text_1.close();
+		text_2.close();
+		ofstream text_1("1.txt");
+		ofstream text_2("2.txt");
+		text_1 << str2;
+		text_2 << str1;
+		break;
+		
+	}
+	return(0);
+}
